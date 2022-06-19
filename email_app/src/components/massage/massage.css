@@ -1,0 +1,37 @@
+.massage{
+    display: flex;
+   flex-direction: column;
+   margin-top: 20px;
+}  
+.massageTop{
+    display: flex;
+}
+.massageImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+} 
+.massageText{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #1877f2;
+    color: white;
+    max-width: 300px;
+}
+.massageBottom{
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.massage.own{
+    align-items: flex-end;
+} 
+.massage.own .massageText{
+    background-color: rgb(241, 234, 234);
+    color: black;
+}
+.hideImg{
+    display: none;
+}

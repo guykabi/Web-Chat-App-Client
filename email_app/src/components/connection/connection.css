@@ -1,0 +1,120 @@
+  
+ .login{
+    margin: auto;
+    text-align: center; 
+    margin-top: 100px; 
+    border: 1px solidr rgba(128, 128, 128, 0.39);; 
+    padding-top: 10px;
+    width: 400px;
+    height: fit-content; 
+    line-height: 35px;
+    margin-bottom: 90px; 
+    box-shadow: 1px 1px 7px 7px rgba(128, 128, 128, 0.39);
+  } 
+  .login input{
+    background-color: rgba(0, 255, 255, 0);
+    border-width: 1px ; 
+    margin-top: 5px;
+    border-radius: 4px;
+    height: 20px;
+    padding: 5px;
+    width: 220px;
+  }  
+  ::placeholder{
+    color: black;
+  }
+  .login button{
+    background-color: rgba(183, 172, 172, 0.872); 
+    border-radius: 4px; 
+    height: 30px; 
+    width: 180px;
+    border-width: 0px;
+    cursor: pointer;
+  }  
+  
+  .login a{
+    cursor: pointer;
+  }
+  #signUp{
+    background-color: rgba(43, 115, 204, 0.872); 
+    border-radius: 4px; 
+    height: 30px; 
+    width: 180px;
+    border-width: 0px;
+  } 
+  #signUp:hover{
+    background-color: rgba(43, 115, 204, 0.534);
+  }  
+  
+  .login button:hover{
+    background-color: rgba(105, 100, 100, 0.872); 
+  }  
+  
+  
+  .show{
+    display: block;
+    margin: auto;
+  } 
+  .hide{
+    display: none;
+  }  
+  
+  .show2{
+    visibility: visible;
+    margin: auto;
+  } 
+  .hide2{
+    visibility: hidden;
+  } 
+  
+  .green{
+    background-color: rgba(5, 83, 5, 0.639);
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuoF1nzrEXe6wNs5NVpF8K32hWVXH51BTxgg&usqp=CAU")  no-repeat scroll 1px 1px;
+    padding-left:25px;
+    background-size: 18px;
+    background-position:  180px;
+    
+  } 
+  .notgreen{
+    background-color: rgba(240, 248, 255, 0);
+  }  
+  
+  .green2{
+    background-color: rgba(5, 83, 5, 0.639);
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuoF1nzrEXe6wNs5NVpF8K32hWVXH51BTxgg&usqp=CAU")  no-repeat scroll 1px 1px;
+    padding-left:25px;
+    background-size: 18px;
+    background-position:  180px;
+    
+  } 
+  .notgreen2{
+    background-color: rgba(240, 248, 255, 0);
+  } 
+  
+  .orLine {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-direction: row;
+  }
+  .orLine:before, .orLine:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid;
+    margin: auto;
+  }
+  .orLine:before {
+    margin-right: 10px
+  }
+  .orLine:after {
+    margin-left: 10px
+  } 
+  
+  #returnBtn{
+    width: 80px;
+    background-color: rgb(92, 92, 180);
+  } 
+  #returnBtn:hover{
+    width: 80px;
+    background-color: rgba(92, 92, 180, 0.563);
+  }

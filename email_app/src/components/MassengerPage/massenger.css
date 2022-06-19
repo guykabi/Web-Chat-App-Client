@@ -1,0 +1,239 @@
+.topBar{
+    width: 100%;  
+    height: 60px;
+    background-color: deepskyblue;
+    padding-bottom: 10px;
+    padding-left: 10px;
+} 
+ .chatAppSpan{
+    margin-right: 220px;
+    margin-left: 15px;
+    font-weight: 500;
+} 
+
+ .searchInput{
+    border-radius: 40px;
+    position: absolute;
+    width: 350px; 
+    height: 30px; 
+    border: none;
+    margin-top: -5px;
+}
+.userImage{
+    border-radius: 50%;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin-left: 420px;
+    cursor: pointer;
+    margin-top: 20px;
+} 
+
+.logOut{
+    margin-left: 480px;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 20px;
+    font-weight: 500;
+}
+.massenger{
+    height: calc(100vh - 70px);
+    display: flex;
+} 
+
+
+
+.chatMenu{
+    flex: 3.5;
+} 
+.nochatMenu{
+    flex: 3.5;
+    pointer-events: none;  
+}
+.chatMenuInput{
+    border: none;
+    width: 90%;
+    padding: 10px 0;
+    border-bottom: solid gray 1px;
+
+}
+.chatBox{
+    flex: 5.5;
+} 
+.chatBoxWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 600px 580px;
+} 
+.chatBoxTop{
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 10px;
+  
+}
+.chatBoxTop::-webkit-scrollbar {
+    display: none;
+}
+.chatBoxBottom{
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+    justify-content: space-between;
+} 
+.chatMassageInput{
+    width: 80%;
+    border-radius: 10px;
+    height: 90px;
+    padding: 10px;
+    resize: none;
+    background-color: rgba(215, 229, 215, 0.399);
+    border: none;
+    font-family: monospace;
+}
+.chatSubmitButton{
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: teal;
+    color: white;
+}
+.chatOnLine{
+    flex: 3.0;
+} 
+
+.chatBoxWrapper,.chatMenuWrapper,.chatOnLineWrapper{
+    padding: 10px;
+    height: 100%;
+} 
+
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.noConversation{
+    
+    top: 10%; 
+    font-size: 50px;
+    color: rgb(220, 215, 215);
+    text-align: center;
+    cursor: default;
+} 
+
+.filterusers{
+    z-index: 2;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 330px;
+    background-color: rgb(253, 250, 250);
+    width: 200px;
+    height: fit-content;
+    overflow: hidden;
+    overflow-y: auto;
+} 
+
+.imageLogOut{
+    margin-left: 600px;
+    margin-top: -40px;
+    
+} 
+
+.userDiv{
+    height: 20px;
+    width: 200px;
+    padding: 10px;
+    cursor: pointer;
+} 
+.userDiv:hover{
+    background-color: rgb(180, 174, 174);
+}
+.dotsOfBackGround::after{
+    margin-top: -5px;
+    margin-left: -8px;
+    cursor: pointer;
+    position: fixed;
+    content: '\2807';
+    font-size: 1.5em;
+    color: #2e2e2e;
+    width: 10px;
+    background-color: rgba(255, 255, 255, 0.687);
+    height: 25px;
+    border-radius: 10px;
+    padding-bottom: 5px;
+    border:rgba(255, 255, 255, 0.687) 2px solid;
+    
+} 
+.changeBackGround{
+    display: block;
+    position: fixed;
+    margin-top: 0px;
+}
+.changeBackGround2{
+    z-index: 2;
+    font-weight: 500;
+    margin-left: 8px;
+    font-size: small;
+    display: block;
+    position: fixed;
+    cursor: pointer;
+    background-color: rgb(242, 235, 235);
+    padding: 9px;
+    border-radius: 5px;
+}
+.changeBackGround2:hover{
+    background-color: rgb(204, 185, 185);
+}
+
+.noChnage{
+    display: none;
+}
+.pickImage{
+    z-index: 3;
+    margin-left: 80px;
+    margin-top: 50px;
+    background-color: rgb(197, 213, 213);
+    width: 380px;
+    height: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+.nopickImage{
+display: none;
+} 
+.pickImage div{
+    width: 130px;
+    height: 130px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.pickImage div input{
+    width: 130px;
+    height: 130px;
+    cursor: pointer;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    transition: 0.8s;
+} 
+.pickImage div input:hover{
+    transform: scale(1.4);
+   
+}
+.pickImage button{
+    margin-top: 15px;
+    border: none;
+    padding: 8px;
+    width: 60px;
+    background-color: lightskyblue;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
