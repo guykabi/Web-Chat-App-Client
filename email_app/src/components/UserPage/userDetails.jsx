@@ -101,7 +101,7 @@ import './userDetails.css'
                             accept='.jpg,.png,.jpeg'
                             type="file" 
                             name="file" />
-                            <label htmlFor="customFile">Click to coose image</label>
+                            <label htmlFor="customFile">Click to choose image</label>
                         
                     </div> <br /> 
                       <div className={bool?'nochange':'change'}>
