@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import {io} from 'socket.io-client'
+import {getMessages,addConversation,getAllUsers,getUser,addMessage,editUser} from '../../utils/utils'
 
 
 
@@ -40,7 +41,7 @@ const Massenger = ()=>
 
     useEffect( ()=>{
         const arrival = async()=>{
-        const {data:res}=await axios.get('http://localhost:8000/api/messages/'+currentConversation?._id)
+        const {data:res}=await getMessages(currentConversation?._id)
         arrivalMessage&& currentConversation?.members.includes(arrivalMessage.sender)&&
         setMessages((prev)=>[...prev,res[res.length-1]])
         }
@@ -80,7 +81,7 @@ const Massenger = ()=>
                     setConversation2(res)
                    }
 
-                    const{data:res2}=await axios.get('http://localhost:8000/api/login')
+                    const{data:res2}=await getAllUsers()
                           setUsers(res2)
             }catch(err)
             {
@@ -93,12 +94,12 @@ const Massenger = ()=>
 
     useEffect(()=>
     {
-       const getMessages =  async()=>
+       const getAllMessages =  async()=>
         { 
             if(currentConversation) 
             {
                try{
-                 const {data:res}= await axios.get("http://localhost:8000/api/messages/"+currentConversation?._id)
+                 const {data:res}= await getMessages(currentConversation?._id)
                  setMessages(res)
                }catch(err)
                  {
@@ -108,14 +109,14 @@ const Massenger = ()=>
 
             try{
                 let friendId = currentConversation.members.find(c=> c != userData._id)
-                const {data:res}=await axios.get('http://localhost:8000/api/login/'+friendId)
+                const {data:res}=await getUser(friendId)
                 setFriendImage(res[0])
             }catch(err){
                 console.log(err)
             }
         }
         }
-        getMessages()
+        getAllMessages()
     },[currentConversation])
   
 
@@ -156,7 +157,7 @@ const Massenger = ()=>
         })
 
       try{
-             const {data:res}=await axios.post("http://localhost:8000/api/messages/",message)
+             const {data:res}= await addMessage(message)
              setMessages([...messages,res])
              setNewMessage("")
       }catch(err)
@@ -230,15 +231,22 @@ const Massenger = ()=>
     }
 
     const sendBackGround = async () =>{
-        const {data:res}=await axios.put('http://localhost:8000/api/login/'+userData._id,selectedImage)
-        const {data:res2}= await axios.get("http://localhost:8000/api/login/"+userData._id)
-        setUserData(res2[0])
-        sessionStorage.setItem('auth',JSON.stringify(res2[0]));
-        setBackGround(!backGround)
-        setChooseImage(!chooseImage)
+        try{
+            await editUser(userData._id,selectedImage)
+            const {data:res2}= await getUser(userData._id)
+            setUserData(res2[0])
+            sessionStorage.setItem('auth',JSON.stringify(res2[0]));
+            setBackGround(!backGround)
+            setChooseImage(!chooseImage)
+        }catch(err){
+            console.log(err)
+        }
     } 
     
-
+const cancelBackGround = ()=>{
+    setChooseImage(true)
+    setUserData(JSON.parse(sessionStorage.getItem('auth')))
+}
     
    
      
@@ -262,7 +270,7 @@ const Massenger = ()=>
                                    {
                                    let obj = {senderId:userData?._id,recieverId:user._id}
                                    try{
-                                       const {data:res} = await axios.post("http://localhost:8000/api/conversations/",obj)
+                                       const {data:res} = await addConversation(obj) 
                                          if(res === "added!")
                                           { 
                                               try{
@@ -310,7 +318,7 @@ const Massenger = ()=>
                      </div>
                 </div>
                 <div className="chatBox">
-                   <div className="chatBoxWrapper" style={currentConversation?{backgroundImage:`url('http://localhost:8000/images/${userData.background}')`}:{backgroundImage:null}} >
+                   <div className="chatBoxWrapper" style={currentConversation?{backgroundImage:`url(${PF+userData.background})`}:{backgroundImage:null}} >
                        { currentConversation?
                        <>
                       
@@ -324,7 +332,7 @@ const Massenger = ()=>
                                          <div><input type='image' value='' onClick={chooseBackGround}   name='international.jpg' style={{ backgroundImage: `url(${PF+'international.jpg'})`}} /></div> <br />
                                          <div><input type='image' value='' onClick={chooseBackGround}   name='Andromeda_Galaxy.jpg' style={{ backgroundImage: `url(${PF+'Andromeda_Galaxy.jpg'})`}} /> </div>&nbsp;
                                          <div><input type='image' value='' onClick={chooseBackGround}   name='pillars_2.jpeg' style={{ backgroundImage: `url(${PF+'pillars_2.jpeg'})`}} /></div> <br /> 
-                                    <button onClick={sendBackGround}>Set</button> &nbsp; &nbsp;<button onClick={chooseBackGround} name='whiteback.png'>None</button> &nbsp; &nbsp; <button onClick={()=>{setChooseImage(true)}}>return</button>
+                                    <button onClick={sendBackGround}>Set</button> &nbsp; &nbsp;<button onClick={chooseBackGround} name='whiteback.png'>None</button> &nbsp; &nbsp; <button onClick={cancelBackGround}>return</button>
                                </div>
                            </label>
                                   

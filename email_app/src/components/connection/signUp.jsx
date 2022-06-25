@@ -2,6 +2,7 @@ import {useState} from 'react'
 import axios from 'axios' 
 import './connection.css'; 
 import {useNavigate} from 'react-router-dom' 
+import {checkUser} from '../../utils/utils'
 
 const SignUp = ()=>
 { 
@@ -39,7 +40,7 @@ const SignUp = ()=>
        e.preventDefault() 
        try{
 
-          const {data:res} =await axios.post("http://localhost:8000/api/login/",user)
+          const {data:res} =await checkUser(user)
           if(res === 'Added Successfully')
           {
             setBool2(!bool2) 

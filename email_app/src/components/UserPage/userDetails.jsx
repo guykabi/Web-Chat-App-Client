@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState,useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import './userDetails.css'
+import {getUser,addImage,editUser} from '../../utils/utils'
 
  const UserDetails = () => {
     const {id} = useParams()
@@ -21,7 +22,7 @@ import './userDetails.css'
     {
         const userData = async()=>
         {
-           const {data:res} = await axios.get("http://localhost:8000/api/login/"+id)
+           const {data:res} = await getUser(id)
            setUser(res[0])
            setIfChange(res[0])
         }
@@ -53,10 +54,9 @@ import './userDetails.css'
                 const fileName = Date.now() + file.name
                 data.append("file",file) 
                 data.append("name",fileName)
-                
                 obj.Image=fileName
                 try{
-                   const {data:res2}= await axios.post("http://localhost:8000/api/upload",data)
+                   const {data:res2}= await addImage(data)
                }catch(err)
                  {
                    console.log(err)
@@ -71,7 +71,7 @@ import './userDetails.css'
                 
              }
         try{
-                const {data:res}= await axios.put("http://localhost:8000/api/login/"+id,obj)
+                const {data:res}= await editUser(id,obj)
                 
         }catch(err){
               console.log(err)

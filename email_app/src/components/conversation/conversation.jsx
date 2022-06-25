@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect,useState } from 'react';
 import './conversation.css'
+import {deleteConversation,getUser,getMessages} from '../../utils/utils'
 
 function Conversation({conversation,currentUser,fromChild,restart}) {
  
-    const [avatar,setAvatar]=useState('https://www.omyoga.co.il/wp-content/themes/hello-elementor/img/no-avatar.png')
     const [user,setUser]=useState(null) 
     const [bool,setBool]=useState(true)
     let [count,setCount]=useState(0)
@@ -20,24 +20,24 @@ function Conversation({conversation,currentUser,fromChild,restart}) {
     useEffect(()=>
     {
         const friendId = conversation.members?.find(m=>m !== currentUser._id )
-        const getUser = async ()=>
+        const getOtherUser = async ()=>
         {
             try{
-                  const {data:res} = await axios.get('http://localhost:8000/api/login/'+friendId)
+                  const {data:res} = await getUser(friendId)
                   setUser(res)
             }catch(err)
               {
                   console.log(err)
               }
         }
-        getUser()
+        getOtherUser()
     
        
     },[conversation])
   
     useEffect(()=>{
         const getSeen = async ()=>{
-            const {data:res}= await axios.get('http://localhost:8000/api/messages/'+conversation._id)
+            const {data:res}= await  getMessages(conversation._id)
             res.forEach(r=> {
                 if(r.seen === false && r.sender != currentUser._id){
                       setCount(count+=1)
@@ -55,7 +55,7 @@ function Conversation({conversation,currentUser,fromChild,restart}) {
 
     const delteChat = async () =>
     {
-        const {data:res}=await axios.delete("http://localhost:8000/api/conversations/"+conversation._id)
+        const {data:res}=await deleteConversation(conversation._id)
         setBool(true)
         fromChild()
     } 

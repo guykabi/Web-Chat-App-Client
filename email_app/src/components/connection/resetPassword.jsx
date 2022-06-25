@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react'
 import axios from 'axios' 
 import './connection.css'; 
 import { useNavigate } from 'react-router'
+import {editUser} from '../../utils/utils'
 
 const ResetPass = ()=>
 {  
@@ -65,7 +66,7 @@ const ResetPass = ()=>
         e.preventDefault() 
         try{
 
-        let {data:res}  = await axios.put("http://localhost:8000/api/login/"+userId,password) 
+        let {data:res}  = await editUser(userId,password) 
         if( res === 'Updated')
         {
             setBool3(!bool3)

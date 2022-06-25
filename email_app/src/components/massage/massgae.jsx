@@ -3,6 +3,7 @@ import './massage.css'
 import {format} from 'timeago.js'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import {editMessage} from '../../utils/utils'
 
 function Massgae({message, currentUser,own,toRestart,friendImg}) {
 
@@ -13,7 +14,7 @@ const PF = 'http://localhost:8000/images/'
             if(message.seen === false && !own){
                 console.log(message)
                 message.seen = true
-                const {data:res}=await axios.put('http://localhost:8000/api/messages/'+message._id,message)
+                const {data:res}=await editMessage(message._id,message)
                 if(res === 'Updated'){
                     
                     toRestart()

@@ -2,6 +2,7 @@ import {useState} from 'react'
 import axios from 'axios' 
 import './connection.css'; 
 import {useNavigate} from 'react-router-dom'
+import {checkUser,resetPassword} from '../../utils/utils'
 
 
 const Login = ()=>
@@ -26,7 +27,7 @@ const Login = ()=>
     {
         e.preventDefault()  
         try{
-             let {data:res}= await axios.post("http://localhost:8000/api/login/",toLogin)
+             let {data:res}= await checkUser(toLogin)
              if(res === 'User does not exist' || res === 'Invalid password')
              {
                 setChange2(false) 
@@ -56,13 +57,13 @@ const Login = ()=>
    {  
        e.preventDefault() 
        try{
-            let {data:res2} = await axios.post("http://localhost:8000/api/login/",userReset) 
+            let {data:res2} = await checkUser(userReset) 
             if(res2 !== 'No matching Email')
              {
                  setChange3(true)
                  sessionStorage.setItem('userID',JSON.stringify(res2)) 
                 
-                let {data:res}  = await axios.post("http://localhost:8000/api/resetpass/",userReset)
+                let {data:res}  = await resetPassword(userReset)
                 sessionStorage.setItem('code',res) 
                 navigate('reset')
              } 
